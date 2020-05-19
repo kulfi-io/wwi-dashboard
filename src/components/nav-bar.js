@@ -11,22 +11,22 @@ export class NavBar extends React.Component {
     render() {
         return (
             <div className={this.props.classes.root}>
-                <AppBar positon="static">
+                <AppBar data-testid="app-bar" positon="static">
                     <Toolbar>
-                        <IconButton
+                        <IconButton 
                             edge="start"
                             className={this.props.classes.menuButton}
                             color="inherit"
                             aria-label="menu"
                         >
-                            <MenuIcon />
+                            <MenuIcon data-testid="menu-icon"/>
                         </IconButton>
-                        <Typography className={this.props.classes.title}>
+                        <Typography data-testid="title" className={this.props.classes.title}>
                             wwi-dashboard
                         </Typography>
                         <div className="nav-bar-right">
-                            <Button color="inherit">signin</Button>
-                            <Button color="inherit">signup</Button>
+                            <Button data-testid="signin" color="inherit">signin</Button>
+                            <Button data-testid= "signup" color="inherit">signup</Button>
                         </div>
                     </Toolbar>
                 </AppBar>
