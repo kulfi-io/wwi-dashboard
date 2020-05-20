@@ -6,6 +6,15 @@ import Login from "../components/Authenticate/login";
 import { Simulate } from "react-dom/test-utils";
 
 describe("Login", () => {
+    test("title is Login", async () => {
+        const component = render(<Login />);
+        const header = component.getByTestId("header");
+        const headerWrapper = header.firstChild;
+        const title = headerWrapper.firstChild;
+
+        expect(title).toBeInTheDocument;
+        expect(title.textContent).toBe('Login')
+    });
     test("email label matches email", async () => {
         const component = render(<Login />);
         const label = component.container.querySelector("#email-label");

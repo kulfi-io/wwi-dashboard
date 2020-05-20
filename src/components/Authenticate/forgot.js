@@ -68,56 +68,58 @@ export class ForgotPassword extends React.Component {
 
     render() {
         return (
-            <Card data-testid="card">
-                <CardHeader title="Forgot Email" data-testid="header" />
-                <CardContent data-testid="content">
-                    <Grid container spacing={8} alignItems="center">
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField
-                                id="email"
-                                data-testid="email"
-                                label={this.state.validEmail.text}
-                                type="email"
-                                error={!this.state.validEmail.status}
-                                onChange={this.valididateEmail}
-                                onBlur={this.valididateEmail}
-                                fullWidth
-                                autoFocus
-                                require="true"
-                            />
+            <div data-testid="auth-forgot">
+                <Card data-testid="card">
+                    <CardHeader title="Forgot password" data-testid="header" />
+                    <CardContent data-testid="content">
+                        <Grid container spacing={8} alignItems="center">
+                            <Grid item md={true} sm={true} xs={true}>
+                                <TextField
+                                    id="email"
+                                    data-testid="email"
+                                    label={this.state.validEmail.text}
+                                    type="email"
+                                    error={!this.state.validEmail.status}
+                                    onChange={this.valididateEmail}
+                                    onBlur={this.valididateEmail}
+                                    fullWidth
+                                    autoFocus
+                                    require="true"
+                                />
+                            </Grid>
                         </Grid>
-                    </Grid>
-                    <Grid
-                        container
-                        alignItems="center"
-                        justify="space-between"
-                        style={{ marginTop: "10px" }}
-                    >
-                        <Grid item>
-                            <Button
-                                data-testid="login"
-                                disableFocusRipple
-                                disableRipple
-                                style={{ textTransform: "none" }}
-                                variant="text"
-                                color="primary"
-                            >
-                                login ?
-                            </Button>
+                        <Grid
+                            container
+                            alignItems="center"
+                            justify="space-between"
+                            style={{ marginTop: "10px" }}
+                        >
+                            <Grid item>
+                                <Button
+                                    data-testid="login"
+                                    disableFocusRipple
+                                    disableRipple
+                                    style={{ textTransform: "none" }}
+                                    variant="text"
+                                    color="primary"
+                                >
+                                    login ?
+                                </Button>
+                            </Grid>
+                            <Grid item>
+                                <Button
+                                    data-testid="send"
+                                    variant="outlined"
+                                    color="primary"
+                                    onClick={this.handleSubmit}
+                                >
+                                    send link
+                                </Button>
+                            </Grid>
                         </Grid>
-                        <Grid item>
-                            <Button
-                                data-testid="send"
-                                variant="outlined"
-                                color="primary"
-                                onClick={this.handleSubmit}
-                            >
-                                send link
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </CardContent>
-            </Card>
+                    </CardContent>
+                </Card>
+            </div>
         );
     }
 }
@@ -128,7 +130,7 @@ ForgotPassword.defaultProps = {
         padding: { padding: theme.spacing.unit },
     })),
     initialValues: { email: ""},
-    emailPattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+    emailPattern: new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/),
     validEmail: { status: true, text: "email" },
 };
 
