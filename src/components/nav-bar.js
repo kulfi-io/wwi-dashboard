@@ -12,7 +12,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 export class NavBar extends React.Component {
     render() {
         return (
-            <div className={this.props.classes.root}>
+            <div data-testid="navbar" className={this.props.classes.root}>
                 <AppBar data-testid="app-bar" positon="static">
                     <Toolbar>
                         <IconButton

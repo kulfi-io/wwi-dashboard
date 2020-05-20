@@ -1,11 +1,11 @@
+Create Login Service
 Create initial login to store to localstarage use dummy user
     1. create top level nav route
         A. Login component
             a.  Add spalsh navbar component
-                 1. add material-ui/core
+                1. add material-ui/core
+                2. add test
             b. login
-            c. login service
-
-        B. Dashboard
-    
+                1. add login ui
+                2. add login test    
 Create baseline ---created and pushed

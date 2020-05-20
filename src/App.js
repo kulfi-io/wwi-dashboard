@@ -1,18 +1,21 @@
 import React from "react";
-import logo from "./logo.png";
 import NavBar from "./components/nav-bar";
+import Login from './components/Authenticate/login';
 import "./App.css";
-
 
 export class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <NavBar />
                 <div className="App-body">
+                    <NavBar />
+                    <Login />
+                </div>
+
+                {/* <div className="App-body">
                     <img src={logo} className="App-logo" alt="logo" />
                     <p>Welcome!</p>
-                </div>
+                </div> */}
             </div>
         );
     }

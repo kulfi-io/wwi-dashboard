@@ -13,6 +13,15 @@
   }
 }
 
+.alert {
+  font-size: small;
+  display: none;
+}
+
+.alert.show {
+  display: block;
+} 
+
 .App-body {
   background-color: #282c34;
   min-height: 100vh;
@@ -42,6 +51,15 @@
   min-width: 75vw;
   text-align: right;
   margin-right: -10;
+}
+
+.centered {
+  margin: auto;
+  max-width: 40vw;
+  max-height: 40vh;
+  min-width: 40vw;
+  min-height: 40vh;
+  vertical-align: middle;
 }
 
 
