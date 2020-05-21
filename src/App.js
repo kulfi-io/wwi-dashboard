@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "./components/nav-bar";
-import Login from './components/Authenticate/login';
+import Register from './components/Authenticate/register';
 import "./App.css";
 
 export class App extends React.Component {
@@ -9,13 +9,9 @@ export class App extends React.Component {
             <div className="App">
                 <div className="App-body">
                     <NavBar />
-                    <Login />
+                    <Register/>
                 </div>
 
-                {/* <div className="App-body">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <p>Welcome!</p>
-                </div> */}
             </div>
         );
     }
