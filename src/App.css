@@ -53,14 +53,12 @@
   margin-right: -10;
 }
 
-.centered {
-  margin: auto;
-  max-width: 40vw;
-  max-height: 40vh;
-  min-width: 40vw;
-  min-height: 40vh;
-  vertical-align: middle;
+.nav-bar-right  a {
+  padding: .3em;
+  color: #ffffff;
 }
+
+
 
 .auth {
   min-width: 50vw;

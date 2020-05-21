@@ -1,5 +1,8 @@
 Create Login Service
-Create initial login to store to localstarage use dummy user
+Create Router
+    1. Routing
+    2. Store for redux forms
+Create initial Authenticate pages
     1. create top level nav route
         A. Login component
             a.  Add spalsh navbar component
@@ -7,5 +10,11 @@ Create initial login to store to localstarage use dummy user
                 2. add test
             b. login
                 1. add login ui
-                2. add login test    
+                2. add login test  
+        B. Forgot component
+            1. add ui
+            2. add test
+        B. Register component
+            1. add ui
+            2. add test     
 Create baseline ---created and pushed

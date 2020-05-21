@@ -6,8 +6,10 @@ import {
     Typography,
     Button,
     IconButton,
+    Link
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+
 
 export class NavBar extends React.Component {
     render() {
@@ -23,6 +25,7 @@ export class NavBar extends React.Component {
                         >
                             <MenuIcon data-testid="menu-icon" />
                         </IconButton>
+
                         <Typography
                             data-testid="title"
                             className={this.props.classes.title}
@@ -30,12 +33,20 @@ export class NavBar extends React.Component {
                             wwi-dashboard
                         </Typography>
                         <div className="nav-bar-right">
-                            <Button data-testid="signin" color="inherit">
+                            <Link
+                                variant="body1"
+                                href="/signin"
+                                color="textPrimary"
+                            >
                                 signin
-                            </Button>
-                            <Button data-testid="signup" color="inherit">
+                            </Link>
+                            <Link
+                                variant="body1"
+                                href="/signup"
+                                color="textPrimary"
+                            >
                                 signup
-                            </Button>
+                            </Link>
                         </div>
                     </Toolbar>
                 </AppBar>

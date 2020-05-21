@@ -56,7 +56,7 @@ const loginForm = (props) => {
                             />
                         </Grid>
                         <Grid item>
-                            <Link component="button" variant="body2">
+                            <Link href="/forgot" variant="body2">
                                 Forgot Password ?
                             </Link>
                         </Grid>

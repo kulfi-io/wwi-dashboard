@@ -76,12 +76,12 @@ const registerForm = (props) => {
                     </Grid>
                     <Grid container alignItems="center" justify="space-between">
                         <Grid item>
-                            <Link component="button" variant="body2">
+                            <Link href="/signin" variant="body2">
                                 Login
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link component="button" variant="body2">
+                            <Link href="/forgot" variant="body2">
                                 Forgot Password ?
                             </Link>
                         </Grid>
