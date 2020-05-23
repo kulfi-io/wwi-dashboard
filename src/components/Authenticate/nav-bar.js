@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 
+
 export class NavBar extends React.Component {
     render() {
         return (
@@ -23,6 +24,7 @@ export class NavBar extends React.Component {
                         >
                             <MenuIcon data-testid="menu-icon" />
                         </IconButton>
+
                         <Typography
                             data-testid="title"
                             className={this.props.classes.title}

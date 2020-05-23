@@ -9,7 +9,6 @@ export class App extends React.Component {
                 <div className="App-body">
                     <Authenticate/>
                 </div>
-
             </div>
         );
     }

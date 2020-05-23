@@ -55,7 +55,10 @@
 
 .nav-bar-right a {
     padding: 0.3em;
+    color: #ffffff;
 }
+
+
 
 .auth {
     min-width: 50vw;
