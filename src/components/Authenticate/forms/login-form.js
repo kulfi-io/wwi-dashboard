@@ -16,7 +16,7 @@ import validator from "../auth-validate";
 const loginForm = (props) => {
     const { handleSubmit, pristine, reset, submitting } = props;
     return (
-        <Card data-testid="card">
+        <Card data-testid="card" className="auth">
             <CardHeader data-testid="header" title="Login" />
             <CardContent data-testid="content">
                 <form data-testid="login-form" onSubmit={handleSubmit}>
@@ -55,11 +55,6 @@ const loginForm = (props) => {
                                 label="Remember me"
                             />
                         </Grid>
-                        <Grid item>
-                            <Link component="button" variant="body2">
-                                Forgot Password ?
-                            </Link>
-                        </Grid>
                     </Grid>
                     <Grid
                         container
@@ -68,25 +63,38 @@ const loginForm = (props) => {
                         style={{ marginTop: "10px" }}
                     >
                         <Grid item>
-                            <Button
-                                data-testid="reset"
-                                disabled={pristine || submitting}
-                                variant="outlined"
-                                type="button"
-                                onClick={reset}
-                            >
-                                Reset
-                            </Button>
+                            <Link variant="body2" href="/forgot">
+                                Forgot Password ?
+                            </Link>
                         </Grid>
                         <Grid item>
-                            <Button
-                                data-testid="login"
-                                disabled={pristine || submitting}
-                                variant="contained"
-                                type="submit"
+                            <Grid
+                                container
+                                alignItems="center"
+                                justify="space-between"
                             >
-                                Login
-                            </Button>
+                                <Grid item>
+                                    <Button
+                                        data-testid="reset"
+                                        disabled={pristine || submitting}
+                                        variant="text"
+                                        type="button"
+                                        onClick={reset}
+                                    >
+                                        Reset
+                                    </Button>
+                                </Grid>
+                                <Grid item>
+                                    <Button
+                                        data-testid="login"
+                                        disabled={pristine || submitting}
+                                        variant="contained"
+                                        type="submit"
+                                    >
+                                        Login
+                                    </Button>
+                                </Grid>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </form>

@@ -1,6 +1,5 @@
 import React from "react";
-import NavBar from "./components/nav-bar";
-import Register from './components/Authenticate/register';
+import Authenticate from './components/Authenticate';
 import "./App.css";
 
 export class App extends React.Component {
@@ -8,8 +7,7 @@ export class App extends React.Component {
         return (
             <div className="App">
                 <div className="App-body">
-                    <NavBar />
-                    <Register/>
+                    <Authenticate/>
                 </div>
 
             </div>

@@ -4,8 +4,8 @@ import {
     AppBar,
     Toolbar,
     Typography,
-    Button,
     IconButton,
+    Link
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 
@@ -30,12 +30,12 @@ export class NavBar extends React.Component {
                             wwi-dashboard
                         </Typography>
                         <div className="nav-bar-right">
-                            <Button data-testid="signin" color="inherit">
+                            <Link data-testid="signin" variant="body1"  href="/signin" color="inherit" >
                                 signin
-                            </Button>
-                            <Button data-testid="signup" color="inherit">
+                            </Link>
+                            <Link data-testid="signup" variant="body1" href="/signup" color="inherit">
                                 signup
-                            </Button>
+                            </Link>
                         </div>
                     </Toolbar>
                 </AppBar>

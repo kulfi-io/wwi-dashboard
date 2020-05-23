@@ -6,7 +6,7 @@ import {
     CardContent,
     Grid,
     Button,
-    Link
+    Link,
 } from "@material-ui/core";
 import { renderTextField } from "./index";
 import validator from "../auth-validate";
@@ -14,7 +14,7 @@ import validator from "../auth-validate";
 const forgotForm = (props) => {
     const { handleSubmit, pristine, reset, submitting } = props;
     return (
-        <Card data-testid="card">
+        <Card data-testid="card" className="auth">
             <CardHeader data-testid="header" title="Forgot Password" />
             <CardContent data-testid="content">
                 <form data-testid="forgot-form" onSubmit={handleSubmit}>
@@ -30,18 +30,6 @@ const forgotForm = (props) => {
                             />
                         </Grid>
                     </Grid>
-                    <Grid container alignItems="center" justify="space-between">
-                        <Grid item>
-                            <Link component="button" variant="body2">
-                                Login
-                            </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link component="button" variant="body2">
-                                Register
-                            </Link>
-                        </Grid>
-                    </Grid>
                     <Grid
                         container
                         alignItems="center"
@@ -49,25 +37,38 @@ const forgotForm = (props) => {
                         style={{ marginTop: "10px" }}
                     >
                         <Grid item>
-                            <Button
-                                data-testid="reset"
-                                disabled={pristine || submitting}
-                                variant="outlined"
-                                type="button"
-                                onClick={reset}
-                            >
-                                Reset
-                            </Button>
+                            <Link variant="body2" href="/signin">
+                                Login
+                            </Link>
                         </Grid>
                         <Grid item>
-                            <Button
-                                data-testid="send-link"
-                                disabled={pristine || submitting}
-                                variant="contained"
-                                type="submit"
+                            <Grid
+                                container
+                                alignItems="center"
+                                justify="space-between"
                             >
-                                Send
-                            </Button>
+                                <Grid item>
+                                    <Button
+                                        data-testid="reset"
+                                        disabled={pristine || submitting}
+                                        variant="text"
+                                        type="button"
+                                        onClick={reset}
+                                    >
+                                        Reset
+                                    </Button>
+                                </Grid>
+                                <Grid item>
+                                    <Button
+                                        data-testid="login"
+                                        disabled={pristine || submitting}
+                                        variant="contained"
+                                        type="submit"
+                                    >
+                                        Send
+                                    </Button>
+                                </Grid>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </form>
@@ -77,8 +78,6 @@ const forgotForm = (props) => {
 };
 
 export default reduxForm({
-    form: 'forgot',
-    validate: validator
+    form: "forgot",
+    validate: validator,
 })(forgotForm);
-
-
