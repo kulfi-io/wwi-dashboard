@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Login from "./forms/login-form";
-import Forgot from "./forms/forgot-form";
-import Register from "./forms/register-form";
+import Login from "./login"
+import Forgot from "./forgot";
+import Register from "./register";
 import NavBar from "./nav-bar";
 
 export class Authenticate extends React.Component {

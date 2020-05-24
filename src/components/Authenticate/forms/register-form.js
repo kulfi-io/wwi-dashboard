@@ -1,12 +1,12 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, reset } from "redux-form";
 import {
     Card,
     CardHeader,
     CardContent,
     Grid,
     Button,
-    Link
+    Link,
 } from "@material-ui/core";
 import { renderTextField } from "./index";
 import validator from "../auth-validate";
@@ -17,7 +17,11 @@ const registerForm = (props) => {
         <Card data-testid="card" className="auth">
             <CardHeader data-testid="header" title="Register" />
             <CardContent data-testid="content">
-                <form data-testid="register-form" onSubmit={handleSubmit}>
+                <form
+                    id="registerForm"
+                    data-testid="register-form"
+                    onSubmit={handleSubmit(props.register)}
+                >
                     <Grid container spacing={8} alignItems="center">
                         <Grid item md={true} sm={true} xs={true}>
                             <Field
@@ -121,9 +125,10 @@ const registerForm = (props) => {
     );
 };
 
+const afterSubmit = (result, dispatch) => dispatch(reset("registerForm"));
+
 export default reduxForm({
-    form: 'Register',
-    validate: validator
+    form: "Register",
+    validate: validator,
+    onSubmitSuccess: afterSubmit
 })(registerForm);
-
-

@@ -17,7 +17,7 @@ const forgotForm = (props) => {
         <Card data-testid="card" className="auth">
             <CardHeader data-testid="header" title="Forgot Password" />
             <CardContent data-testid="content">
-                <form data-testid="forgot-form" onSubmit={handleSubmit}>
+                <form data-testid="forgot-form" onSubmit={props.handleSubmit}>
                     <Grid container spacing={8} alignItems="center">
                         <Grid item md={true} sm={true} xs={true}>
                             <Field

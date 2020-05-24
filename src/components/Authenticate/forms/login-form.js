@@ -1,5 +1,5 @@
 import React from "react";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, reset } from "redux-form";
 import {
     Card,
     CardHeader,
@@ -8,18 +8,22 @@ import {
     Button,
     Checkbox,
     FormControlLabel,
-    Link
+    Link,
 } from "@material-ui/core";
 import { renderTextField } from "./index";
 import validator from "../auth-validate";
 
-const loginForm = (props) => {
+export const loginForm = (props) => {
     const { handleSubmit, pristine, reset, submitting } = props;
     return (
         <Card data-testid="card" className="auth">
             <CardHeader data-testid="header" title="Login" />
             <CardContent data-testid="content">
-                <form data-testid="login-form" onSubmit={handleSubmit}>
+                <form
+                    data-testid="login-form"
+                    id="loginForm"
+                    onSubmit={handleSubmit(props.signIn)}
+                >
                     <Grid container spacing={8} alignItems="center">
                         <Grid item md={true} sm={true} xs={true}>
                             <Field
@@ -103,9 +107,10 @@ const loginForm = (props) => {
     );
 };
 
+const afterSubmit = (result, dispatch) => dispatch(reset("loginForm"));
+
 export default reduxForm({
-    form: 'Login',
-    validate: validator
+    form: "loginForm",
+    validate: validator,
+    onSubmitSuccess: afterSubmit,
 })(loginForm);
-
-
