@@ -1,143 +1,170 @@
 import React from "react";
-import { render} from "@testing-library/react";
+import { Provider } from "react-redux";
+import { render, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import Login from "../components/Authenticate/login";
+import store from "./test-store";
+import { heplerText } from "../constants";
 import { Simulate } from "react-dom/test-utils";
 
+afterEach(cleanup);
 describe("Login", () => {
     test("title is Login", async () => {
-        const component = render(<Login />);
+        const component = render(
+            <Provider store={store}>
+                <Login />
+            </Provider>
+        );
         const header = component.getByTestId("header");
-        const headerWrapper = header.firstChild;
-        const title = headerWrapper.firstChild;
 
-        expect(title).toBeInTheDocument;
-        expect(title.textContent).toBe('Login')
-    });
-    test("email label matches email", async () => {
-        const component = render(<Login />);
-        const label = component.container.querySelector("#email-label");
-
-        expect(label.textContent).toBe("email");
+        expect(header).toBeInTheDocument;
+        expect(header.textContent).toBe("Login");
     });
 
-    test("email label displays 'Email is required' on change when value is empty", async () => {
-        const component = render(<Login />);
-        const wrapper = component.getByTestId("email");
+    test("email placeholder matches Email *", async () => {
+        const component = render(
+            <Provider store={store}>
+                <Login />
+            </Provider>
+        );
 
-        const inputWrapper = wrapper.lastChild;
-        let label = wrapper.firstChild;
-        let input = inputWrapper.firstChild;
+        const email = component.getByTestId("email");
+        const placeholder = email.firstChild;
 
-        input.value = "";
-        Simulate.change(input);
-
-        expect(label.textContent).toBe("Email is required");
+        expect(placeholder.textContent).toEqual("Email *");
     });
 
-    test("email label displays 'Email is required' on blur when value is empty", async () => {
-        const component = render(<Login />);
-        const wrapper = component.getByTestId("email");
+    test("helper displays 'Invalid email' on change when value is empty", async () => {
+        const component = render(
+            <Provider store={store}>
+                <Login />
+            </Provider>
+        );
+        const email = component.getByTestId("email");
+        const helper = email.lastChild;
 
-        const inputWrapper = wrapper.lastChild;
-        let label = wrapper.firstChild;
-        let input = inputWrapper.firstChild;
+        email.value = "";
+        Simulate.change(email);
 
-        input.value = "";
-        Simulate.blur(input);
-
-        expect(label.textContent).toBe("Email is required");
+        expect(helper.textContent).toBe(heplerText.INVALID_EMAIL);
     });
 
-    test("email label displays 'Email is invalid' on change  when value is invalid format", async () => {
-        const component = render(<Login />);
-        const wrapper = component.getByTestId("email");
+    test("email label displays 'Invalid email' on blur when value is empty", async () => {
+        const component = render(
+            <Provider store={store}>
+                <Login />
+            </Provider>
+        );
+        const email = component.getByTestId("email");
+        const helper = email.lastChild;
 
-        const inputWrapper = wrapper.lastChild;
-        let label = wrapper.firstChild;
-        let input = inputWrapper.firstChild;
+        email.value = "";
+        Simulate.blur(email);
 
-        input.value = "abc";
-        Simulate.change(input);
-
-        expect(label.textContent).toBe("Email is invalid");
+        expect(helper.textContent).toBe(heplerText.INVALID_EMAIL);
     });
 
-    test("email label displays 'Email is required' on blur  when value is invalid format", async () => {
-        const component = render(<Login />);
-        const wrapper = component.getByTestId("email");
+    test("email label displays 'Invalid email' on change  when value is invalid format", async () => {
+        const component = render(
+            <Provider store={store}>
+                <Login />
+            </Provider>
+        );
+        const email = component.getByTestId("email");
+        const helper = email.lastChild;
 
-        const inputWrapper = wrapper.lastChild;
-        let label = wrapper.firstChild;
-        let input = inputWrapper.firstChild;
+        email.value = "abc";
+        Simulate.change(email);
 
-        input.value = "abc";
-        Simulate.blur(input);
-
-        expect(label.textContent).toBe("Email is invalid");
+        expect(helper.textContent).toBe(heplerText.INVALID_EMAIL);
     });
 
-    test("password label matches password", async () => {
-        const component = render(<Login />);
-        const label = component.container.querySelector("#password-label");
+    test("email label displays 'Invalid email' on blur  when value is invalid format", async () => {
+        const component = render(
+            <Provider store={store}>
+                <Login />
+            </Provider>
+        );
+        const email = component.getByTestId("email");
+        const helper = email.lastChild;
 
-        expect(label.textContent).toBe("password");
+        email.value = "abc";
+        Simulate.blur(email);
+
+        expect(helper.textContent).toBe(heplerText.INVALID_EMAIL);
     });
 
-    test("password label displays 'Password is required' on change when value is empty", async () => {
-        const component = render(<Login />);
-        const wrapper = component.getByTestId("password");
+    test("password placeholder matches Password *", async () => {
+        const component = render(
+            <Provider store={store}>
+                <Login />
+            </Provider>
+        );
 
-        const inputWrapper = wrapper.lastChild;
-        let label = wrapper.firstChild;
-        let input = inputWrapper.firstChild;
+        const password = component.getByTestId("password");
+        const placeholder = password.firstChild;
 
-        input.value = "";
-        Simulate.change(input);
-
-        expect(label.textContent).toBe("Password is required");
+        expect(placeholder.textContent).toEqual("Password *");
     });
 
-    test("password label displays 'Password is required' on blur when value is empty", async () => {
-        const component = render(<Login />);
-        const wrapper = component.getByTestId("password");
+    test("password label displays 'Password must be at least 6 characters' on change when value is empty", async () => {
+        const component = render(
+            <Provider store={store}>
+                <Login />
+            </Provider>
+        );
+        const password = component.getByTestId("password");
+        const helper = password.lastChild;
 
-        const inputWrapper = wrapper.lastChild;
-        let label = wrapper.firstChild;
-        let input = inputWrapper.firstChild;
+        password.value = "";
+        Simulate.change(password);
 
-        input.value = "";
-        Simulate.blur(input);
-
-        expect(label.textContent).toBe("Password is required");
+        expect(helper.textContent).toEqual(heplerText.MUST_BE_6_CHAR);
     });
 
-    test("password label displays 'A least 6 characters' on change when values is less than 6 character", async () => {
-        const component = render(<Login />);
-        const wrapper = component.getByTestId("password");
+    test("password label displays 'Password must be at least 6 characters' on blur when value is empty", async () => {
+        const component = render(
+            <Provider store={store}>
+                <Login />
+            </Provider>
+        );
+        const password = component.getByTestId("password");
+        const helper = password.lastChild;
 
-        const inputWrapper = wrapper.lastChild;
-        let label = wrapper.firstChild;
-        let input = inputWrapper.firstChild;
+        password.value = "";
+        Simulate.blur(password);
 
-        input.value = "abc";
-        Simulate.change(input);
-
-        expect(label.textContent).toBe("A least 6 characters");
+        expect(helper.textContent).toEqual(heplerText.MUST_BE_6_CHAR);
     });
 
-    test("password label displays 'A least 6 characters' on blur when values is less than 6 character", async () => {
-        const component = render(<Login />);
-        const wrapper = component.getByTestId("password");
+    test("password label displays 'Must be at least 6 characters' on change when values is less than 6 character", async () => {
+        const component = render(
+            <Provider store={store}>
+                <Login />
+            </Provider>
+        );
+        const password = component.getByTestId("password");
+        const helper = password.lastChild;
 
-        const inputWrapper = wrapper.lastChild;
-        let label = wrapper.firstChild;
-        let input = inputWrapper.firstChild;
+        password.value = "abc";
+        Simulate.change(password);
 
-        input.value = "abc";
-        Simulate.blur(input);
+        expect(helper.textContent).toEqual(heplerText.MUST_BE_6_CHAR);
+    });
 
-        expect(label.textContent).toBe("A least 6 characters");
+    test("password label displays 'Must be at least 6 characters' on blur when values is less than 6 character", async () => {
+        const component = render(
+            <Provider store={store}>
+                <Login />
+            </Provider>
+        );
+        const password = component.getByTestId("password");
+        const helper = password.lastChild;
+
+        password.value = "abc";
+        Simulate.blur(password);
+
+        expect(helper.textContent).toEqual(heplerText.MUST_BE_6_CHAR);
     });
 });

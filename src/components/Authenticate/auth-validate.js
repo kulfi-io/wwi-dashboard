@@ -1,21 +1,22 @@
+import { heplerText} from '../../constants';
 export default (values) => {
     const errors = {};
 
     // const required = (value) => (value ? undefined : "Required");
     const longEnough = (value) =>
-        value && value.length >= 3 ? undefined : "Must be at least 3 characters";
+        value && value.length >= 3 ? undefined : heplerText.MUST_BE_3_CHAR;
      const longEnoughPass = (value) =>
-         value && value.length >= 6 ? undefined : "Must be at least 6 characters";
+         value && value.length >= 6 ? undefined : heplerText.MUST_BE_6_CHAR;
     const email = (value) =>
         value && /(.+)@(.+){2,}\.(.+){2,}/i.test(value)
             ? undefined
-            : "Invalid email";
+            : heplerText.INVALID_EMAIL;
     
     
     const match = (source, dest) =>
         source && dest && source === dest
             ? undefined
-            : 'Invalid match';
+            : heplerText.INVALID_MATCH;
 
     // const requiredFields = [
     //     "firstName",

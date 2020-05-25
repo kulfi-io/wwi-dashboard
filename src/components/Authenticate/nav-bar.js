@@ -29,13 +29,34 @@ export class NavBar extends React.Component {
                             data-testid="title"
                             className={this.props.classes.title}
                         >
-                            wwi-dashboard
+                            <Link
+                                data-testid="title-link"
+                                id="title"
+                                variant="body1"
+                                href="/"
+                                color="inherit"
+                                style={{whiteSpace: "nowrap"}}
+                            >
+                                wwi-dashboard
+                            </Link>
                         </Typography>
                         <div className="nav-bar-right">
-                            <Link data-testid="signin" variant="body1"  href="/signin" color="inherit" >
+                            <Link
+                                data-testid="signin"
+                                id="signin"
+                                variant="body1"
+                                href="/signin"
+                                color="inherit"
+                            >
                                 signin
                             </Link>
-                            <Link data-testid="signup" variant="body1" href="/signup" color="inherit">
+                            <Link
+                                data-testid="signup"
+                                id="signup"
+                                variant="body1"
+                                href="/signup"
+                                color="inherit"
+                            >
                                 signup
                             </Link>
                         </div>

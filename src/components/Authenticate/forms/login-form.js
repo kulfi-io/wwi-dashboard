@@ -8,7 +8,6 @@ import {
     Button,
     Checkbox,
     FormControlLabel,
-    Link,
 } from "@material-ui/core";
 import { renderTextField } from "./index";
 import validator from "../auth-validate";
@@ -28,6 +27,7 @@ export const loginForm = (props) => {
                         <Grid item md={true} sm={true} xs={true}>
                             <Field
                                 name="email"
+                                data-testid="email"
                                 autoFocus
                                 required
                                 component={renderTextField}
@@ -41,6 +41,7 @@ export const loginForm = (props) => {
                             <Field
                                 required
                                 name="password"
+                                data-testid="password"
                                 component={renderTextField}
                                 label="Password"
                                 type="password"
@@ -67,9 +68,9 @@ export const loginForm = (props) => {
                         style={{ marginTop: "10px" }}
                     >
                         <Grid item>
-                            <Link variant="body2" href="/forgot">
+                            <Button variant="text" type="button" data-testid="forgot" href="/forgot">
                                 Forgot Password ?
-                            </Link>
+                            </Button>
                         </Grid>
                         <Grid item>
                             <Grid
@@ -93,6 +94,8 @@ export const loginForm = (props) => {
                                         data-testid="login"
                                         disabled={pristine || submitting}
                                         variant="contained"
+                                        color="primary"
+                                        size="small"
                                         type="submit"
                                     >
                                         Login

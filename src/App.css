@@ -58,11 +58,10 @@
     color: #ffffff;
 }
 
-
-
 .auth {
     min-width: 50vw;
     max-width: 50vw;
+    animation: fadeIn ease 3s;
 }
 
 @keyframes App-logo-spin {
@@ -71,5 +70,14 @@
     }
     to {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
