@@ -1,8 +1,8 @@
-Create Login Service
-Create Router
+Create Login Service to localstorage
+Create Router -- created pushed
     1. Routing
     2. Store for redux forms
-Create initial Authenticate pages
+Create initial Authenticate pages -- created pushed
     1. create top level nav route
         A. Login component
             a.  Add spalsh navbar component

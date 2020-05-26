@@ -32,7 +32,7 @@ export class UserService {
                 (x) => x.email === _user.email && x.password === _user.password
             );
 
-        if (exists.length > 0) action.result = exists[0].id;
+        if (exists && exists.length > 0) action.result = exists[0].id;
     };
 
     removeUser = (action) => {

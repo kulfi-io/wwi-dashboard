@@ -26,6 +26,7 @@ const registerForm = (props) => {
                         <Grid item md={true} sm={true} xs={true}>
                             <Field
                                 name="firstName"
+                                data-testid="firstName"
                                 autoFocus
                                 required
                                 component={renderTextField}
@@ -38,6 +39,7 @@ const registerForm = (props) => {
                         <Grid item md={true} sm={true} xs={true}>
                             <Field
                                 name="lastName"
+                                data-testid="lastName"
                                 required
                                 component={renderTextField}
                                 label="Last Name"
@@ -49,6 +51,7 @@ const registerForm = (props) => {
                         <Grid item md={true} sm={true} xs={true}>
                             <Field
                                 name="email"
+                                data-testid="email"
                                 required
                                 component={renderTextField}
                                 label="Email"
@@ -64,6 +67,7 @@ const registerForm = (props) => {
                                 component={renderTextField}
                                 label="Password"
                                 type="password"
+                                data-testid="password"
                             />
                         </Grid>
                     </Grid>
@@ -75,6 +79,7 @@ const registerForm = (props) => {
                                 component={renderTextField}
                                 label="Confirm Password"
                                 type="password"
+                                data-testid="confirm"
                             />
                         </Grid>
                     </Grid>
@@ -85,7 +90,7 @@ const registerForm = (props) => {
                         style={{ marginTop: "10px" }}
                     >
                         <Grid item>
-                            <Link variant="body2" href="/signin">
+                            <Link data-testid="login" variant="body1" href="/signin">
                                 Login
                             </Link>
                         </Grid>
@@ -108,12 +113,13 @@ const registerForm = (props) => {
                                 </Grid>
                                 <Grid item>
                                     <Button
-                                        data-testid="login"
-                                        disabled={pristine || submitting}
+                                        data-testid="register"
+                                        disabled={submitting}
                                         variant="contained"
+                                        color="primary"
                                         type="submit"
                                     >
-                                        Login
+                                        Register
                                     </Button>
                                 </Grid>
                             </Grid>

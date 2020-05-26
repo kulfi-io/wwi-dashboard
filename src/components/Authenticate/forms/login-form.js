@@ -8,6 +8,7 @@ import {
     Button,
     Checkbox,
     FormControlLabel,
+    Link
 } from "@material-ui/core";
 import { renderTextField } from "./index";
 import validator from "../auth-validate";
@@ -41,10 +42,10 @@ export const loginForm = (props) => {
                             <Field
                                 required
                                 name="password"
-                                data-testid="password"
                                 component={renderTextField}
                                 label="Password"
                                 type="password"
+                                data-testid="password"
                             />
                         </Grid>
                     </Grid>
@@ -68,9 +69,14 @@ export const loginForm = (props) => {
                         style={{ marginTop: "10px" }}
                     >
                         <Grid item>
-                            <Button variant="text" type="button" data-testid="forgot" href="/forgot">
+                            <Link
+                                variant="body1"
+                                type="button"
+                                data-testid="forgot"
+                                href="/forgot"
+                            >
                                 Forgot Password ?
-                            </Button>
+                            </Link>
                         </Grid>
                         <Grid item>
                             <Grid
@@ -92,7 +98,7 @@ export const loginForm = (props) => {
                                 <Grid item>
                                     <Button
                                         data-testid="login"
-                                        disabled={pristine || submitting}
+                                        disabled={submitting}
                                         variant="contained"
                                         color="primary"
                                         size="small"

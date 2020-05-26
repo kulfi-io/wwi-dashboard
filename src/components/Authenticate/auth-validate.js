@@ -1,38 +1,35 @@
-import { heplerText} from '../../constants';
+import { heplerText } from "../../constants";
 export default (values) => {
     const errors = {};
 
-    // const required = (value) => (value ? undefined : "Required");
     const longEnough = (value) =>
-        value && value.length >= 3 ? undefined : heplerText.MUST_BE_3_CHAR;
-     const longEnoughPass = (value) =>
-         value && value.length >= 6 ? undefined : heplerText.MUST_BE_6_CHAR;
+        value && value.length > 0 && value.length < 3
+            ? heplerText.MUST_BE_3_CHAR
+            : undefined;
+    
+    const longEnoughPass = (value) =>
+        value && value.length > 0 && value.length < 6
+            ? heplerText.MUST_BE_6_CHAR
+            : undefined;
+    
     const email = (value) =>
-        value && /(.+)@(.+){2,}\.(.+){2,}/i.test(value)
-            ? undefined
-            : heplerText.INVALID_EMAIL;
-    
-    
-    const match = (source, dest) =>
-        source && dest && source === dest
-            ? undefined
-            : heplerText.INVALID_MATCH;
+        value && value.length > 0 && !/(.+)@(.+){2,}\.(.+){2,}/i.test(value)
+            ? heplerText.INVALID_EMAIL
+            : undefined;
 
-    // const requiredFields = [
-    //     "firstName",
-    //     "lastName",
-    //     "email",
-    //     "password",
-    //     "confirm",
-    // ];
-    // requiredFields.forEach((field) => {
-    //     errors[field] = required(field);
-    // });
+    const match = (source, dest) =>
+        source &&
+        dest &&
+        source.length > 0 &&
+        dest.length > 0 &&
+        source !== dest
+            ? heplerText.INVALID_MATCH
+            : undefined;
 
     errors.firstName = longEnough(values.firstName);
     errors.lastName = longEnough(values.lastName);
     errors.email = email(values.email);
-    errors.password = longEnoughPass(values.password)
+    errors.password = longEnoughPass(values.password);
     errors.confirm = match(values.password, values.confirm);
 
     return errors;

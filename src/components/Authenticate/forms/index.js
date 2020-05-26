@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField} from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 
 export const renderTextField = ({
     input,
@@ -7,9 +7,10 @@ export const renderTextField = ({
     meta: { touched, error },
     ...custom
 }) => {
-    const errorText = error;
+    let errorText = error;
     error = error === undefined ? undefined : true;
 
+    errorText = !errorText ? ' ' : errorText;
     return (
         <TextField
             label={label}
@@ -21,4 +22,3 @@ export const renderTextField = ({
         />
     );
 };
-
