@@ -64,6 +64,12 @@
     animation: fadeIn ease 3s;
 }
 
+.form-note {
+    font-size: small;
+    color: grey;
+    animation: fadeIn ease 3s;
+}
+
 @keyframes App-logo-spin {
     from {
         transform: rotate(0deg);

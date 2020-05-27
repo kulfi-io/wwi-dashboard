@@ -1,5 +1,5 @@
 import React from "react";
-import { Field, reduxForm, reset } from "redux-form";
+import { Field, reduxForm} from "redux-form";
 import {
     Card,
     CardHeader,
@@ -14,11 +14,14 @@ import { renderTextField } from "./index";
 import validator from "../auth-validate";
 
 export const loginForm = (props) => {
-    const { handleSubmit, pristine, reset, submitting } = props;
+    const { note, handleSubmit, pristine, reset, submitting } = props;
     return (
         <Card data-testid="card" className="auth">
             <CardHeader data-testid="header" title="Login" />
             <CardContent data-testid="content">
+                <div data-testid="note" id="note" className="form-note">
+                    {note}
+                </div>
                 <form
                     data-testid="login-form"
                     id="loginForm"
@@ -28,6 +31,7 @@ export const loginForm = (props) => {
                         <Grid item md={true} sm={true} xs={true}>
                             <Field
                                 name="email"
+                                id="email"
                                 data-testid="email"
                                 autoFocus
                                 required
@@ -42,6 +46,7 @@ export const loginForm = (props) => {
                             <Field
                                 required
                                 name="password"
+                                id="password"
                                 component={renderTextField}
                                 label="Password"
                                 type="password"
@@ -87,6 +92,7 @@ export const loginForm = (props) => {
                                 <Grid item>
                                     <Button
                                         data-testid="reset"
+                                        id="reset"
                                         disabled={pristine || submitting}
                                         variant="text"
                                         type="button"
@@ -98,6 +104,7 @@ export const loginForm = (props) => {
                                 <Grid item>
                                     <Button
                                         data-testid="login"
+                                        id="login"
                                         disabled={submitting}
                                         variant="contained"
                                         color="primary"
@@ -116,10 +123,7 @@ export const loginForm = (props) => {
     );
 };
 
-const afterSubmit = (result, dispatch) => dispatch(reset("loginForm"));
-
 export default reduxForm({
     form: "loginForm",
     validate: validator,
-    onSubmitSuccess: afterSubmit,
 })(loginForm);

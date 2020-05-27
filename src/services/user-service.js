@@ -1,5 +1,6 @@
 import { authConstants as CONSTANTS } from "../store/authenticate/constants";
 import { v4 as uuidv4 } from "uuid";
+import { status, statusMessage } from '../constants';
 
 export class UserService {
     
@@ -24,6 +25,11 @@ export class UserService {
     };
 
     getUser = (action) => {
+        const _result = {
+            status: null,
+            value: null
+        }
+
         let exists, registered;
         const _user = action.payload;
         registered = JSON.parse(localStorage.getItem("registered"));
@@ -32,7 +38,18 @@ export class UserService {
                 (x) => x.email === _user.email && x.password === _user.password
             );
 
-        if (exists && exists.length > 0) action.result = exists[0].id;
+        if (exists && exists.length > 0) { 
+            _result.status = status.PASSED;
+            _result.value = exists[0].id;
+            action.result = _result;
+            action.error = false;
+        } 
+        else { 
+            _result.status = status.FAILED;
+            _result.value = statusMessage.INVALID_USER;
+            action.result = _result;
+            action.error = true;
+        };
     };
 
     removeUser = (action) => {

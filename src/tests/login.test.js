@@ -1,24 +1,27 @@
 import React from "react";
 import { Provider } from "react-redux";
-import {
-    render,
-    cleanup,
-} from "@testing-library/react";
+import { render, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import Login from "../components/Authenticate/login";
 import store from "./test-store";
-import { heplerText } from "../constants";
+import { heplerText, statusMessage } from "../constants";
 import { Simulate } from "react-dom/test-utils";
+
+function getComponent() { 
+    const component = render(
+        <Provider store={store}>
+            <Login />
+        </Provider>
+    );
+
+    return component;
+}
 
 afterEach(cleanup);
 describe("Login", () => {
     test("title is Login", async () => {
-        const component = render(
-            <Provider store={store}>
-                <Login />
-            </Provider>
-        );
+        const component = getComponent();
         const header = component.getByTestId("header");
 
         expect(header).toBeInTheDocument;
@@ -26,11 +29,7 @@ describe("Login", () => {
     });
 
     test("email placeholder matches Email *", async () => {
-        const component = render(
-            <Provider store={store}>
-                <Login />
-            </Provider>
-        );
+        const component = getComponent();
 
         const email = component.getByTestId("email");
         const placeholder = email.firstChild;
@@ -39,11 +38,7 @@ describe("Login", () => {
     });
 
     test("render fields helpertext on load", () => {
-        const component = render(
-            <Provider store={store}>
-                <Login />
-            </Provider>
-        );
+        const component = getComponent();
 
         const email = component.getByTestId("email");
         const password = component.getByTestId("password");
@@ -53,22 +48,14 @@ describe("Login", () => {
     });
 
     test("expect reset to be disabled on load", () => {
-        const component = render(
-            <Provider store={store}>
-                <Login />
-            </Provider>
-        );
+        const component = getComponent();
 
         const reset = component.getByTestId("reset");
         expect(reset.disabled).toBeTruthy();
     });
 
     test("expect helper to display Invalid email on change when not in email format", () => {
-        const component = render(
-            <Provider store={store}>
-                <Login />
-            </Provider>
-        );
+        const component = getComponent();
 
         const wrapper = component.getByTestId("email");
         const email = wrapper.children[1].firstChild;
@@ -83,11 +70,7 @@ describe("Login", () => {
     });
 
     test("expect helper to display Invalid email on blur when not in email format", () => {
-        const component = render(
-            <Provider store={store}>
-                <Login />
-            </Provider>
-        );
+        const component = getComponent();
 
         const wrapper = component.getByTestId("email");
         const email = wrapper.children[1].firstChild;
@@ -102,11 +85,7 @@ describe("Login", () => {
     });
 
     test("expect helper to display 'Must be at least 6 characters' on change when password is to shortr", () => {
-        const component = render(
-            <Provider store={store}>
-                <Login />
-            </Provider>
-        );
+        const component = getComponent()
 
         const wrapper = component.getByTestId("password");
         const pass = wrapper.children[1].firstChild;
@@ -121,11 +100,7 @@ describe("Login", () => {
     });
 
     test("expect helper to display 'Must be at least 6 characters' on blur when password is to shortr", () => {
-        const component = render(
-            <Provider store={store}>
-                <Login />
-            </Provider>
-        );
+        const component = getComponent();
 
         const wrapper = component.getByTestId("password");
         const pass = wrapper.children[1].firstChild;
@@ -140,11 +115,7 @@ describe("Login", () => {
     });
 
     test("expect reset to be enabled on dirty", () => {
-        const component = render(
-            <Provider store={store}>
-                <Login />
-            </Provider>
-        );
+        const component = getComponent();
 
         const wrapper = component.getByTestId("email");
         const email = wrapper.children[1].firstChild;
@@ -157,11 +128,7 @@ describe("Login", () => {
     });
 
     test("expect reset to clean fields", () => {
-        const component = render(
-            <Provider store={store}>
-                <Login />
-            </Provider>
-        );
+        const component = getComponent();
 
         const emailWrapper = component.getByTestId("email");
         const email = emailWrapper.children[1].firstChild;
@@ -180,8 +147,6 @@ describe("Login", () => {
         Simulate.change(email);
         Simulate.change(pass);
 
-        expect(email.value).toEqual("some text");
-        expect(pass.value).toEqual("password");
         expect(reset.disabled).toBeFalsy();
 
         Simulate.click(reset);
@@ -191,12 +156,10 @@ describe("Login", () => {
         expect(reset.disabled).toBeTruthy();
     });
 
-    test("expect flieds to be cleared after valid submit", async () => {
-        const component = render(
-            <Provider store={store}>
-                <Login />
-            </Provider>
-        );
+    test("expect to reset fields on valid login", () => {
+        const component = getComponent();
+
+        const note = component.getByTestId("note");
 
         const emailWrapper = component.getByTestId("email");
         const email = emailWrapper.children[1].firstChild;
@@ -204,22 +167,22 @@ describe("Login", () => {
         const passWrapper = component.getByTestId("password");
         const pass = passWrapper.children[1].firstChild;
 
-        const signin = component.getByTestId("login");
+        const login = component.getByTestId("login");
 
         expect(email.value).toEqual("");
         expect(pass.value).toEqual("");
+        expect(reset.disabled).toBeTruthy();
 
         email.value = "tester@test.com";
         pass.value = "password";
-
-        expect(email.value).toEqual("tester@test.com");
-        expect(pass.value).toEqual("password");
-        
         Simulate.change(email);
         Simulate.change(pass);
-        Simulate.submit(signin);
+        Simulate.click(login);
 
-        expect(email.value).toEqual("");
-        expect(pass.value).toEqual("");
+        expect(note.value).toEqual(statusMessage.INVALID_USER);
     });
+
+   
+
+
 });

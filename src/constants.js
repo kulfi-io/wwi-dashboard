@@ -5,3 +5,12 @@ export const heplerText = {
     REQUIRED: "Required",
     INVALID_MATCH: "Invalid match"
 };
+
+export const status = {
+    PASSED: "PASSED",
+    FAILED: "FAILDED"
+};
+
+export const statusMessage = {
+    INVALID_USER: 'Invalid username or password',
+};
