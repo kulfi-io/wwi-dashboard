@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import { renderTextField } from "./index";
 import validator from "../auth-validate";
+import Note from '../../note';
 
 export const loginForm = (props) => {
     const { note, handleSubmit, pristine, reset, submitting } = props;
@@ -19,9 +20,10 @@ export const loginForm = (props) => {
         <Card data-testid="card" className="auth">
             <CardHeader data-testid="header" title="Login" />
             <CardContent data-testid="content">
-                <div data-testid="note" id="note" className="form-note">
+                {/* <div data-testid="note" id="note" className="form-note">
                     {note}
-                </div>
+                </div> */}
+                <Note note={note}/>
                 <form
                     data-testid="login-form"
                     id="loginForm"
