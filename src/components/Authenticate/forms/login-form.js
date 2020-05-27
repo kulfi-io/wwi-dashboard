@@ -20,9 +20,6 @@ export const loginForm = (props) => {
         <Card data-testid="card" className="auth">
             <CardHeader data-testid="header" title="Login" />
             <CardContent data-testid="content">
-                {/* <div data-testid="note" id="note" className="form-note">
-                    {note}
-                </div> */}
                 <Note note={note}/>
                 <form
                     data-testid="login-form"
